@@ -1,6 +1,8 @@
 import './App.css'
 import React, {useState} from "react";
 import {useForm} from 'react-hook-form';
+import Button from "./components/Button.jsx";
+import FormInputField from "./components/FormInputField.jsx";
 
 function App() {
 
@@ -16,8 +18,14 @@ function App() {
         }
     });
 
-    function handleFormSubmit(data) {
-        console.log(data);
+    function handleFormSubmit(formData) {
+        console.log({
+            ...formData,
+            strawberries,
+            bananas,
+            apples,
+            kiwis
+        })
     }
 
     function resetButton() {
@@ -76,57 +84,46 @@ function App() {
                     </button>
                 </article>
                 <article>
-                    <button type="button" onClick={() => resetButton()}>Reset</button>
+                    <Button
+                        type="button"
+                        handleClick={() => resetButton()}
+                    >Reset</Button>
                 </article>
 
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
-                    <label htmlFor="first-name-field">
-                        Voornaam
-                        <input
-                            type="text"
-                            id="first-name-field"
-                            {...register("first-name")}
-                            // value={firstName}
-                            // onChange={(e) => setFirstName(e.target.value)}
-                        />
-                    </label>
-                    <label htmlFor="last-name-field">
-                        Achternaam
-                        <input
-                            type="text"
-                            id="last-name-field"
-                            {...register("last-name")}
-                            // value={lastName}
-                            // onChange={(e) => setLastName(e.target.value)}
-                        />
-                    </label>
-                    <label htmlFor="age-field">
-                        Leeftijd
-                        <input
-                            type="number"
-                            id="age-field"
-                            {...register("age")}
-                            // value={age}
-                            // onChange={(e) => setAge(e.target.value)}
-                        />
-                    </label>
-                    <label htmlFor="zipcode-field">
-                        Postcode
-                        <input
-                            type="text"
-                            id="zipcode-field"
-                            {...register("zipcode")}
-                            // value={zipcode}
-                            // onChange={(e) => setZipcode(e.target.value)}
-                        />
-                    </label>
+                    <FormInputField
+                        inputId="first-name-field"
+                        inputLabel="Voornaam"
+                        inputType="text"
+                        inputName="first-name"
+                        register={register}
+                    />
+                    <FormInputField
+                        inputId="last-name-field"
+                        inputLabel="Achternaam"
+                        inputType="text"
+                        inputName="last-name"
+                        register={register}
+                    />
+                    <FormInputField
+                        inputId="age-field"
+                        inputLabel="Leeftijd"
+                        inputType="number"
+                        inputName="age"
+                        register={register}
+                    />
+                    <FormInputField
+                        inputId="zipcode-field"
+                        inputLabel="Postcode"
+                        inputType="text"
+                        inputName="zipcode"
+                        register={register}
+                    />
                     <label htmlFor="delivery-frequency-field">
                         Bezorgfrequentie
                         <select
                             id="delivery-frequency-field"
                             {...register("delivery-frequency")}
-                            // value={zipcode}
-                            // onChange={(e) => setZipcode(e.target.value)}
                         >
                             <option value="weekly">Iedere week</option>
                             <option value="bi-weekly">Om de week</option>
@@ -141,8 +138,6 @@ function App() {
                                 value="day"
                                 name="delivery-time"
                                 {...register("delivery-time")}
-                                // value={zipcode}
-                                // onChange={(e) => setZipcode(e.target.value)}
                             />
                             Overdag
                         </label>
@@ -153,8 +148,6 @@ function App() {
                                 value="night"
                                 name="delivery-time"
                                 {...register("delivery-time")}
-                                // value={zipcode}
-                                // onChange={(e) => setZipcode(e.target.value)}
                             />
                             's Avonds
                         </label>
@@ -166,8 +159,6 @@ function App() {
                             rows="4"
                             cols="40"
                             {...register("message")}
-                            // value={zipcode}
-                            // onChange={(e) => setZipcode(e.target.value)}
                         ></textarea>
                     </label>
                     <label htmlFor="terms-and-conditions-field">
@@ -175,14 +166,12 @@ function App() {
                             type="checkbox"
                             id="terms-and-conditions-field"
                             {...register("terms-and-conditions")}
-                            // checked={termsAndConditions}
-                            // onChange={() => toggleTermsAndConditions(!termsAndConditions)}
                         />
                         Ik ga akkoord met de voorwaarden
                     </label>
-                    <button type="submit">
+                    <Button type="submit">
                         Verzend
-                    </button>
+                    </Button>
                 </form>
             </main>
         </>
