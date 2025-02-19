@@ -2,7 +2,7 @@ import React from "react";
 
 function Button({type, handleClick, disabled, children}) {
     return (
-        <button
+        <button className="main-button"
         type={type}
         onClick={handleClick}
         disabled={disabled}

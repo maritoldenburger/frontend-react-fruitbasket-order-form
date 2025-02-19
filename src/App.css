@@ -1,17 +1,78 @@
-main {
-    margin: 24px 0;
+#root {
+    margin: 0 auto;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-article {
-    margin: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 50px;
 }
 
-button {
-    padding: 3px;
+.gradient-text {
+    background-image: linear-gradient(to right, #c40a18, #d33d11, #df5d06, #e97a00, #f19600, #eaa400, #e2b200, #d9bf00, #c2c100, #a8c300, #8bc400, #6ac400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px #326f72 solid;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 25px;
+    width: 100%;
+    gap: 10px;
+}
+
+.main-button {
+    padding: 5px;
+    width: 100%;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.fruit-button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.fruit-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-form {
+    gap: 5px;
+    align-items: flex-start;
+}
+
+textarea, select {
+    display: block;
+    margin-top: 10px;
+    resize: none;
+}
+
+select {
+    cursor: pointer;
+}
+
+textarea {
+    border-radius: 5px;
+}
+
+.radio {
+    display: flex;
+    flex-direction: row;
 }

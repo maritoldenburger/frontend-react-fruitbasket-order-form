@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import {useForm} from 'react-hook-form';
 import Button from "./components/Button.jsx";
 import FormInputField from "./components/FormInputField.jsx";
+import FruitCounter from "./components/FruitCounter.jsx";
+import logo from "./assets/screenshot-logo.png";
 
 function App() {
 
@@ -38,99 +40,84 @@ function App() {
     return (
         <>
             <main>
-                <h1>Fruitmand bezorgservice</h1>
-                <article>
-                    <h2>🍓 Aardbeien</h2>
-                    <button type="button"
-                            disabled={strawberries === 0}
-                            onClick={() => setStrawberries(strawberries - 1)}>-
-                    </button>
-                    <p>{strawberries}</p>
-                    <button type="button"
-                            onClick={() => setStrawberries(strawberries + 1)}>+
-                    </button>
-                </article>
-                <article>
-                    <h2>🍌 Bananen</h2>
-                    <button type="button"
-                            disabled={bananas === 0}
-                            onClick={() => setBananas(bananas - 1)}>-
-                    </button>
-                    <p>{bananas}</p>
-                    <button type="button"
-                            onClick={() => setBananas(bananas + 1)}>+
-                    </button>
-                </article>
-                <article>
-                    <h2>🍏 Appels</h2>
-                    <button type="button"
-                            disabled={apples === 0}
-                            onClick={() => setApples(apples - 1)}>-
-                    </button>
-                    <p>{apples}</p>
-                    <button type="button"
-                            onClick={() => setApples(apples + 1)}>+
-                    </button>
-                </article>
-                <article>
-                    <h2>🥝 Kiwi's</h2>
-                    <button type="button"
-                            disabled={kiwis === 0}
-                            onClick={() => setKiwis(kiwis - 1)}>-
-                    </button>
-                    <p>{kiwis}</p>
-                    <button type="button"
-                            onClick={() => setKiwis(kiwis + 1)}>+
-                    </button>
-                </article>
-                <article>
+                <h1 className="gradient-text">Fruitmand Bezorgservice</h1>
+                <section className="fruit-counter">
+                    <FruitCounter
+                        fruitName="🍓 Aardbeien"
+                        fruit={strawberries}
+                        setFruit={setStrawberries}
+                    />
+                    <FruitCounter
+                        fruitName="🍌 Bananen"
+                        fruit={bananas}
+                        setFruit={setBananas}
+                    />
+                    <FruitCounter
+                        fruitName="🍏 Appels"
+                        fruit={apples}
+                        setFruit={setApples}
+                    />
+                    <FruitCounter
+                        fruitName="🥝 Kiwi's"
+                        fruit={kiwis}
+                        setFruit={setKiwis}
+                    />
                     <Button
                         type="button"
                         handleClick={() => resetButton()}
                     >Reset</Button>
-                </article>
+                </section>
 
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
-                    <FormInputField
-                        inputId="first-name-field"
-                        inputLabel="Voornaam"
-                        inputType="text"
-                        inputName="first-name"
-                        register={register}
-                    />
-                    <FormInputField
-                        inputId="last-name-field"
-                        inputLabel="Achternaam"
-                        inputType="text"
-                        inputName="last-name"
-                        register={register}
-                    />
-                    <FormInputField
-                        inputId="age-field"
-                        inputLabel="Leeftijd"
-                        inputType="number"
-                        inputName="age"
-                        register={register}
-                    />
-                    <FormInputField
-                        inputId="zipcode-field"
-                        inputLabel="Postcode"
-                        inputType="text"
-                        inputName="zipcode"
-                        register={register}
-                    />
-                    <label htmlFor="delivery-frequency-field">
-                        Bezorgfrequentie
-                        <select
-                            id="delivery-frequency-field"
-                            {...register("delivery-frequency")}
-                        >
-                            <option value="weekly">Iedere week</option>
-                            <option value="bi-weekly">Om de week</option>
-                            <option value="monthly">Iedere maand</option>
-                        </select>
-                    </label>
-                    <div className="delivery-time-field">
+                    <section className="order-form">
+                        <FormInputField
+                            inputId="first-name-field"
+                            inputLabel="Voornaam"
+                            inputType="text"
+                            inputName="first-name"
+                            register={register}
+                        />
+                    </section>
+                    <section className="order-form">
+                        <FormInputField
+                            inputId="last-name-field"
+                            inputLabel="Achternaam"
+                            inputType="text"
+                            inputName="last-name"
+                            register={register}
+                        />
+                    </section>
+                    <section className="order-form">
+                        <FormInputField
+                            inputId="age-field"
+                            inputLabel="Leeftijd"
+                            inputType="number"
+                            inputName="age"
+                            register={register}
+                        />
+                    </section>
+                    <section className="order-form">
+                        <FormInputField
+                            inputId="zipcode-field"
+                            inputLabel="Postcode"
+                            inputType="text"
+                            inputName="zipcode"
+                            register={register}
+                        /></section>
+                    <section className="order-form">
+                        <label htmlFor="delivery-frequency-field">
+                            Bezorgfrequentie
+                            <select
+                                id="delivery-frequency-field"
+                                {...register("delivery-frequency")}
+                            >
+                                <option value="weekly">Iedere week</option>
+                                <option value="bi-weekly">Om de week</option>
+                                <option value="monthly">Iedere maand</option>
+                            </select>
+                        </label>
+                    </section>
+                    <section className="order-form radio">
                         <label htmlFor="day">
                             <input
                                 type="radio"
@@ -151,24 +138,28 @@ function App() {
                             />
                             's Avonds
                         </label>
-                    </div>
-                    <label htmlFor="message-field">
-                        Opmerking
-                        <textarea
-                            id="message-field"
-                            rows="4"
-                            cols="40"
-                            {...register("message")}
-                        ></textarea>
-                    </label>
-                    <label htmlFor="terms-and-conditions-field">
-                        <input
-                            type="checkbox"
-                            id="terms-and-conditions-field"
-                            {...register("terms-and-conditions")}
-                        />
-                        Ik ga akkoord met de voorwaarden
-                    </label>
+                    </section>
+                    <section className="order-form">
+                        <label htmlFor="message-field">
+                            Opmerking
+                            <textarea
+                                id="message-field"
+                                rows="5"
+                                cols="40"
+                                {...register("message")}
+                            ></textarea>
+                        </label>
+                    </section>
+                    <section className="order-form">
+                        <label htmlFor="terms-and-conditions-field">
+                            <input
+                                type="checkbox"
+                                id="terms-and-conditions-field"
+                                {...register("terms-and-conditions")}
+                            />
+                            Ik ga akkoord met de voorwaarden
+                        </label>
+                    </section>
                     <Button type="submit">
                         Verzend
                     </Button>
